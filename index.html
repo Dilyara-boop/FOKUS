@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FOCUS — мой день</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cards.css">
+    <link rel="stylesheet" href="money.css">
+    <link rel="stylesheet" href="lessons.css">
+    <link rel="stylesheet" href="progress.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <header>
+            <div>
+                <h1>FOCUS</h1>
+                <p class="subtitle">Do what matters.</p>
+            </div>
+
+            <div class="level">
+                ⭐ <span>0 XP</span>
+            </div>
+        </header>
+
+
+        <main class="tab-panel active" id="todayTab" data-tab-panel="today">
+
+            <section class="welcome">
+
+              <div class="welcome-text">
+
+    <div class="hello">
+       <h1 id="greeting">Добрый вечер, Диляра 🌙</h1>
+    </div>
+
+    <h2>
+        Что сегодня <span>главное?</span>
+    </h2>
+
+    <p class="focus-message">
+        Выбери 3 главных дела на сегодня.
+    </p>
+
+    <p class="motivation">
+        Остальное может подождать ♡
+    </p>
+
+</div> 
+
+              <div class="character">
+    <img src="images/character.png" alt="FOCUS персонаж">
+</div>
+
+            </section>
+
+
+         <div class="focus-grid">
+
+    <!-- ТАТСТРОЙДОМ -->
+    <div class="focus-card business">
+
+        <div class="focus-content">
+            <div class="focus-title">🏠 ТатСтройДом</div>
+            <span class="focus-tag">ДЕНЬГИ</span>
+
+            <h4>Что я сегодня<br>сделаю для продаж?</h4>
+
+            <input
+                class="focus-input"
+                type="text"
+                placeholder="✎ Моя задача..."
+            >
+
+            <label class="done-check">
+                <input type="checkbox" class="focus-done">
+                <span>Готово</span>
+            </label>
+        </div>
+
+        <img
+            class="focus-sticker"
+            src="images/tatstroydom.png"
+            alt="ТатСтройДом"
+        >
+
+        <button type="button" class="money-open" id="salesOpen">
+            ₽ Продажи и доход
+        </button>
+
+    </div>
+
+
+    <!-- ENGLISH -->
+    <div class="focus-card english-card">
+
+        <div class="focus-content">
+            <div class="focus-title">🇬🇧 English</div>
+            <span class="focus-tag blue-tag">РАЗВИТИЕ</span>
+
+            <h4>Что я сегодня<br>сделаю для учеников?</h4>
+
+            <input
+                class="focus-input"
+                type="text"
+                placeholder="✎ Моя задача..."
+            >
+
+            <label class="done-check">
+                <input type="checkbox" class="focus-done">
+                <span>Готово</span>
+            </label>
+        </div>
+
+        <img
+            class="focus-sticker english-sticker"
+            src="images/english.png"
+            alt="English"
+        >
+
+        <button type="button" class="lessons-open" id="lessonsOpen">
+            📚 Ученики и занятия
+        </button>
+
+    </div>
+
+
+    <!-- Я -->
+    <div class="focus-card myself-card">
+
+        <div class="focus-content">
+            <div class="focus-title">🌿 Я</div>
+            <span class="focus-tag green-tag">ЗАБОТА</span>
+
+            <h4>Что я сегодня<br>сделаю для себя?</h4>
+
+            <input
+                class="focus-input"
+                type="text"
+                placeholder="✎ Моя задача..."
+            >
+
+            <label class="done-check">
+                <input type="checkbox" class="focus-done">
+                <span>Готово</span>
+            </label>
+        </div>
+
+        <img
+            class="focus-sticker myself-sticker"
+            src="images/myself.png"
+            alt="Для себя"
+        >
+<button type="button" class="self-care-open">
+    🌿 Фигура и забота
+</button>
+    </div>
+
+</div>
+
+<div id="extraTasks"></div>
+                <button class="add-task" id="addTaskBtn" type="button">
+                    ＋ Добавить задачу
+                </button>
+
+            <section class="stats">
+
+                <div>
+                    🔥
+                    <strong>0</strong>
+                    <span>дней подряд</span>
+                </div>
+
+                <div>
+                    ⭐
+                    <strong>0</strong>
+                    <span>XP сегодня</span>
+                </div>
+
+                <div>
+                    ✓
+                    <strong>0/3</strong>
+                    <span>выполнено</span>
+                </div>
+
+            </section>
+
+
+           <button class="stuck-button" id="stuckButton">
+    <img src="images/stuck.png" alt="Я зависла. Что делать?">
+</button>
+
+        </main>
+
+        <section class="tab-panel focus-help-tab" id="focusTab" data-tab-panel="focus" aria-label="Фокус">
+            <div id="focusHelpHost"></div>
+        </section>
+
+        <section class="tab-panel progress-tab" id="progressTab" data-tab-panel="progress" aria-labelledby="progressTabTitle">
+            <div class="progress-heading">
+                <p class="progress-eyebrow">МОЙ ПУТЬ</p>
+                <h2 id="progressTabTitle">Прогресс и награды</h2>
+                <p>Маленькие выполненные шаги складываются в большие перемены.</p>
+            </div>
+
+            <section class="progress-hero" aria-label="Общий прогресс">
+                <div class="progress-level-copy">
+                    <span>Общий опыт</span>
+                    <strong id="progressTotalXP">0 XP</strong>
+                    <p id="progressLevel">Уровень 1</p>
+                </div>
+                <div class="progress-level-track" role="progressbar" aria-label="Опыт до следующего уровня" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <span id="progressLevelFill"></span>
+                </div>
+                <p id="progressLevelNote">До уровня 2 осталось 100 XP</p>
+                <div class="progress-overview">
+                    <div><span>🔥</span><strong id="progressStreak">0</strong><small>дней в серии</small></div>
+                    <div><span>✓</span><strong id="progressWeekExtra">0</strong><small>доп. задач за неделю</small></div>
+                    <div><span>★</span><strong id="progressMonthExtra">0</strong><small>доп. задач за месяц</small></div>
+                </div>
+            </section>
+
+            <div class="reward-grid">
+                <section class="reward-card" id="weeklyRewardCard">
+                    <p class="reward-period" id="weeklyPeriodLabel">Эта неделя</p>
+                    <h3>Недельная награда</h3>
+                    <p class="reward-progress-text"><strong id="weeklyRewardCount">0 из 5</strong> дополнительных задач</p>
+                    <div class="reward-track"><span id="weeklyRewardFill"></span></div>
+                    <label>Выбери награду
+                        <select id="weeklyRewardChoice">
+                            <option value="">Выбрать…</option>
+                            <option value="Любимый кофе или десерт">Любимый кофе или десерт</option>
+                            <option value="Фильм или сериал без чувства вины">Фильм или сериал без чувства вины</option>
+                            <option value="Бьюти-процедура">Бьюти-процедура</option>
+                            <option value="Небольшая приятная покупка">Небольшая приятная покупка</option>
+                            <option value="Свободный вечер без рабочих дел">Свободный вечер без рабочих дел</option>
+                            <option value="custom">Своя награда</option>
+                        </select>
+                    </label>
+                    <label id="weeklyCustomWrap" hidden>Своя награда<input type="text" id="weeklyRewardCustom" maxlength="200" placeholder="Что тебя порадует?"></label>
+                    <button type="button" id="claimWeeklyReward" disabled>Получить награду</button>
+                    <p id="weeklyRewardStatus" role="status"></p>
+                </section>
+
+                <section class="reward-card" id="monthlyRewardCard">
+                    <p class="reward-period" id="monthlyPeriodLabel">Этот месяц</p>
+                    <h3>Месячная награда</h3>
+                    <p class="reward-progress-text"><strong id="monthlyRewardCount">0 из 20</strong> дополнительных задач</p>
+                    <div class="reward-track"><span id="monthlyRewardFill"></span></div>
+                    <label>Выбери награду
+                        <select id="monthlyRewardChoice">
+                            <option value="">Выбрать…</option>
+                            <option value="Крупная покупка для себя">Крупная покупка для себя</option>
+                            <option value="Ресторан">Ресторан</option>
+                            <option value="Поездка">Поездка</option>
+                            <option value="Полноценный день отдыха">Полноценный день отдыха</option>
+                            <option value="custom">Своя награда</option>
+                        </select>
+                    </label>
+                    <label id="monthlyCustomWrap" hidden>Своя награда<input type="text" id="monthlyRewardCustom" maxlength="200" placeholder="Что станет твоей наградой?"></label>
+                    <button type="button" id="claimMonthlyReward" disabled>Получить награду</button>
+                    <p id="monthlyRewardStatus" role="status"></p>
+                </section>
+            </div>
+
+            <section class="achievements-section">
+                <div class="progress-section-heading"><div><p class="progress-eyebrow">ДОСТИЖЕНИЯ</p><h3>Твоя коллекция</h3></div><span id="achievementCount">0 из 7</span></div>
+                <div class="achievement-grid" id="achievementGrid"></div>
+            </section>
+
+            <section class="reward-history-section">
+                <div class="progress-section-heading"><div><p class="progress-eyebrow">ИСТОРИЯ</p><h3>Полученные награды</h3></div></div>
+                <div id="rewardHistory"></div>
+            </section>
+            <p class="progress-storage-status" id="progressStorageStatus" role="status"></p>
+            <div class="progress-reset-area">
+                <button type="button" id="resetProgress">Сбросить прогресс</button>
+            </div>
+        </section>
+<section class="tab-panel reflection-tab"
+         id="profileTab"
+         data-tab-panel="profile"
+         aria-label="Для меня">
+    <div class="reflection-heading"><p class="reflection-eyebrow">НЕБОЛЬШАЯ ПАУЗА ДЛЯ СЕБЯ</p><h2>Что откликается сегодня?</h2><p>Одна картина, немного тишины и твои собственные смыслы.</p></div>
+    <p id="reflectionStatus" role="status"></p>
+    <div class="reflection-layout">
+        <div class="reflection-picture"><img id="reflectionImage" alt="" hidden><div id="reflectionCover"><span aria-hidden="true">🌿</span><h3>Твоя карта дня</h3><p>Не предсказание, а повод прислушаться к себе.</p><button id="openReflection" type="button">Открыть карту</button></div><p id="reflectionDate"></p></div>
+        <form id="reflectionForm" hidden>
+            <h3>Побудь с этой картиной</h3><p>Здесь нет правильных ответов. Можно заполнить только один вопрос.</p>
+            <label for="reflectionAnswer0">Что первым привлекло моё внимание?</label><textarea id="reflectionAnswer0" rows="3" maxlength="3000" placeholder="Деталь, цвет, место…"></textarea>
+            <label for="reflectionAnswer1">Какие чувства вызывает эта сцена?</label><textarea id="reflectionAnswer1" rows="3" maxlength="3000" placeholder="Можно назвать чувство или описать ощущение…"></textarea>
+            <label for="reflectionAnswer2">Что я хочу взять для себя сегодня?</label><textarea id="reflectionAnswer2" rows="3" maxlength="3000" placeholder="Мысль, разрешение, маленький шаг…"></textarea>
+            <div class="reflection-actions"><button type="submit">Сохранить заметку</button><button type="button" id="reflectionToday" hidden>К сегодняшней карте</button></div>
+        </form>
+    </div>
+    <section class="reflection-history"><h3>Мои отклики</h3><p>К сохранённым мыслям можно вернуться.</p><div id="reflectionHistory"></div></section>
+    <section class="companion" aria-labelledby="companionTitle">
+        <div class="companion-heading">
+            <div>
+                <p class="reflection-eyebrow" data-companion-i18n="eyebrow">БЕРЕЖНЫЙ ДИАЛОГ</p>
+                <h3 id="companionTitle" data-companion-i18n="title">Спокойный собеседник</h3>
+                <p data-companion-i18n="subtitle">Можно выговориться, разобрать мысли и выбрать один маленький следующий шаг</p>
+            </div>
+            <div class="companion-heading-tools">
+                <div class="companion-language" role="group" aria-label="Язык собеседника">
+                    <button type="button" data-companion-language="ru" aria-pressed="true">RU</button>
+                    <button type="button" data-companion-language="en" aria-pressed="false">EN</button>
+                </div>
+                <span class="companion-mark" aria-hidden="true">♡</span>
+            </div>
+        </div>
+        <div class="companion-prompts" aria-label="Быстрые темы разговора">
+            <button type="button" data-companion-prompt="anxious">Мне тревожно</button>
+            <button type="button" data-companion-prompt="tired">Я устала</button>
+            <button type="button" data-companion-prompt="start">Не могу начать</button>
+            <button type="button" data-companion-prompt="sort">Хочу разобраться</button>
+        </div>
+        <div class="companion-chat" id="companionChat" role="log" aria-live="polite" aria-label="Переписка">
+            <div class="companion-message companion-message-assistant" data-companion-message="greeting">Я рядом. Расскажи, что сейчас больше всего занимает твои мысли</div>
+        </div>
+        <form class="companion-form" id="companionForm">
+            <label for="companionInput" data-companion-i18n="messageLabel">Твоё сообщение</label>
+            <div class="companion-compose">
+                <textarea id="companionInput" rows="2" maxlength="2000" placeholder="Можно написать так, как получается…" required></textarea>
+                <button type="submit" data-companion-i18n="send">Отправить</button>
+            </div>
+        </form>
+        <div class="companion-footer">
+            <p data-companion-i18n="warning">Это поддерживающий собеседник, а не врач. В экстренной ситуации обратись за помощью к людям и службам рядом</p>
+            <button type="button" id="clearCompanion" data-companion-i18n="clear">Очистить разговор</button>
+        </div>
+    </section>
+    <p class="reflection-privacy">Карты — для размышления, не для предсказаний или диагностики. Заметки сохраняются в этом браузере. Очистка данных браузера удалит их.</p>
+</section>
+       
+
+
+        <nav aria-label="Основная навигация">
+            <button class="active" type="button" data-tab="today" aria-controls="todayTab" aria-selected="true">🏠<span>Сегодня</span></button>
+            <button type="button" data-tab="focus" aria-controls="focusTab" aria-selected="false">🎯<span>Фокус</span></button>
+            <button type="button" data-tab="progress" aria-controls="progressTab" aria-selected="false">🏆<span>Прогресс</span></button>
+            <button type="button" data-tab="profile" aria-controls="profileTab" aria-selected="false">🌿<span>Для меня</span></button>
+        </nav>
+
+    </div>
+ <div class="stuck-modal" id="stuckModal">
+
+    <div class="stuck-modal-content">
+
+        <button class="stuck-close" id="stuckClose" type="button">← Назад к выбору причины</button>
+
+        <h2>Что сейчас происходит?</h2>
+
+        <p class="stuck-subtitle">
+            Выбери то, что ближе всего.
+        </p>
+
+
+        <!-- 6 ПРИЧИН -->
+        <div class="stuck-options">
+
+            <button class="stuck-option" id="tooManyBtn">
+                <span>😵</span>
+                <strong>Слишком много дел</strong>
+                <small>Помоги мне выбрать главное</small>
+            </button>
+
+            <button class="stuck-option" id="bigTaskBtn">
+                <span>🪨</span>
+                <strong>Задача слишком большая</strong>
+                <small>Разбей её на маленькие шаги</small>
+            </button>
+
+            <button class="stuck-option" id="dontKnowBtn">
+                <span>❓</span>
+                <strong>Не знаю, с чего начать</strong>
+                <small>Найди первый простой шаг</small>
+            </button>
+
+            <button class="stuck-option" id="noEnergyBtn">
+                <span>😴</span>
+                <strong>Нет сил</strong>
+                <small>Дай мне минимальную версию задачи</small>
+            </button>
+
+            <button class="stuck-option" id="avoidBtn">
+                <span>😬</span>
+                <strong>Избегаю неприятного дела</strong>
+                <small>Помоги начать всего на 5 минут</small>
+            </button>
+
+            <button class="stuck-option" id="pickForMe">
+                <span>🎲</span>
+                <strong>Выбери за меня</strong>
+                <small>Просто скажи, что делать сейчас</small>
+            </button>
+
+        </div>
+
+
+        <!-- РЕЗУЛЬТАТ "ВЫБЕРИ ЗА МЕНЯ" -->
+        <div class="stuck-result" id="stuckResult">
+
+            <p class="result-label">
+                Сейчас только это:
+            </p>
+
+            <h3 id="chosenTask">...</h3>
+
+            <p class="result-note">
+                Не нужно делать всё. Только один следующий шаг.
+            </p>
+
+            <button id="startFocusBtn">
+                ▶ Начать 10 минут
+            </button>
+
+            <div class="focus-timer" id="focusTimer">
+                10:00
+            </div>
+
+            <button id="finishFocusBtn">
+                ✓ Сделано +20 XP
+            </button>
+
+        </div>
+
+
+        <!-- СЛИШКОМ МНОГО ДЕЛ -->
+        <div class="too-many-result" id="tooManyResult">
+
+            <p class="result-label">
+                Давай уберём лишний шум.
+            </p>
+
+            <h3>
+                Что из этого действительно нужно сделать сегодня?
+            </h3>
+
+            <div id="tooManyTasks"></div>
+
+            <button id="chooseOneBtn">
+                🎯 Оставить только одно
+            </button>
+
+        </div>
+<!-- ЗАДАЧА СЛИШКОМ БОЛЬШАЯ -->
+<div class="big-task-result" id="bigTaskResult">
+
+    <p class="result-label">
+        Давай уменьшим задачу.
+    </p>
+
+    <h3>Разбей её на 3 маленьких шага</h3>
+
+    <input
+        type="text"
+        id="bigTaskInput"
+        placeholder="Напиши большую задачу..."
+    >
+
+    <input
+        type="text"
+        id="stepOne"
+        placeholder="Шаг 1 — самый простой"
+    >
+
+    <input
+        type="text"
+        id="stepTwo"
+        placeholder="Шаг 2"
+    >
+
+    <input
+        type="text"
+        id="stepThree"
+        placeholder="Шаг 3"
+    >
+
+    <button id="startFirstStepBtn">
+        🪜 Начать с первого шага
+    </button>
+
+</div>
+    </div>
+
+</div> 
+
+    <dialog id="selfCareDialog" class="self-care-dialog" aria-labelledby="careTitle">
+        <form method="dialog" class="care-close-form"><button class="self-care-close" aria-label="Закрыть">×</button></form>
+        <div class="care-welcome">
+            <div><p class="care-eyebrow">МОЁ ЛИЧНОЕ ПРОСТРАНСТВО</p><h2 id="careTitle">Время для себя</h2><p>В своём темпе. С вниманием к себе.</p></div>
+            <img src="images/myself.png" alt="" width="140" height="140">
+        </div>
+        <div class="care-switch" role="group" aria-label="Раздел дневника">
+            <button type="button" data-care-view="body" aria-pressed="true" aria-controls="careBody">Моя фигура</button>
+            <button type="button" data-care-view="wellbeing" aria-pressed="false" aria-controls="careWellbeing">Забота о себе</button>
+        </div>
+        <p id="careGlobalStatus" role="status"></p>
+        <section id="careBody" class="body-journal">
+            <h3>Мой ориентир</h3>
+            <div class="care-metrics" aria-label="Сводка веса">
+                <div><span>Начальный</span><strong id="careStart">—</strong></div>
+                <div><span>Последняя запись</span><strong id="careCurrent">—</strong></div>
+                <div><span>Желаемый</span><strong id="careTarget">—</strong></div>
+            </div>
+            <p id="careDelta" class="care-muted">Добавь цель и первую запись — здесь появится сводка.</p>
+            <p id="careReason" hidden></p><p id="careSmallStep" hidden></p>
+            <details class="body-goal"><summary>Моя цель · посмотреть или изменить</summary>
+                <div class="care-fields">
+                    <label>Начальный вес, кг<input id="goalStartWeight" type="number" min="1" step="0.1" placeholder="По желанию"></label>
+                    <label>Желаемый вес, кг<input id="goalTargetWeight" type="number" min="1" step="0.1" placeholder="По желанию"></label>
+                    <label class="care-wide">Для чего мне это?<textarea id="goalReason" rows="2" maxlength="3000" placeholder="Что я хочу чувствовать?"></textarea></label>
+                    <label class="care-wide">Мой маленький шаг<input id="goalSmallStep" type="text" maxlength="3000" placeholder="Например, прогулка после работы"></label>
+                </div>
+                <button id="saveBodyGoal" class="care-primary" type="button" disabled>Сохранить цель</button>
+                <p id="bodyGoalStatus" role="status"></p>
+            </details>
+            <details class="body-entry"><summary id="bodyEntryTitle">＋ Добавить запись</summary>
+                <form id="bodyRecordForm">
+                    <div class="care-fields">
+                        <label>Дата<input id="bodyDate" type="date" required></label>
+                        <label>Вес, кг<input id="bodyWeight" type="number" min="1" step="0.1" placeholder="Необязательно"></label>
+                        <label>Талия, см<input id="bodyWaist" type="number" min="1" step="0.1" placeholder="Необязательно"></label>
+                        <label>Бёдра, см<input id="bodyHips" type="number" min="1" step="0.1" placeholder="Необязательно"></label>
+                        <label class="care-wide">Как я себя чувствую<textarea id="bodyNote" rows="2" maxlength="3000" placeholder="Самочувствие и маленькие успехи"></textarea></label>
+                    </div>
+                    <div class="care-actions"><button id="saveBodyRecord" class="care-primary" type="submit" disabled>Сохранить запись</button><button id="cancelBodyEdit" type="button" hidden>Отмена</button></div>
+                </form>
+            </details>
+            <p id="bodyRecordStatus" role="status"></p>
+            <h3>История наблюдений</h3><div id="bodyRecordList" class="care-history"></div>
+        </section>
+        <section id="careWellbeing" hidden>
+            <h3>Как я сегодня?</h3><p class="care-muted">Можно заполнить только одно поле. Здесь нет оценок и штрафов.</p>
+            <form id="wellbeingForm">
+                <div class="care-fields">
+                    <label>Дата<input id="wellDate" type="date" required></label>
+                    <label>Настроение<select id="wellMood"><option value="">Не отмечать</option><option value="hard">Тяжело</option><option value="low">Грустно</option><option value="neutral">Нейтрально</option><option value="calm">Спокойно</option><option value="good">Хорошо</option></select></label>
+                    <label>Энергия<select id="wellEnergy"><option value="">Не отмечать</option><option value="1">1 · Почти нет сил</option><option value="2">2 · Немного сил</option><option value="3">3 · Средне</option><option value="4">4 · Достаточно сил</option><option value="5">5 · Много сил</option></select></label>
+                    <label>Сон, часов<input id="wellSleep" type="number" min="0" max="24" step="0.1" placeholder="Необязательно"></label>
+                    <label>Движение, минут<input id="wellMovement" type="number" min="0" max="1440" step="1" placeholder="Прогулка, зарядка, танцы…"></label>
+                    <label class="care-wide">Что поддержало меня сегодня?<textarea id="wellNote" rows="3" maxlength="3000" placeholder="Отдохнула, поговорила с близкими, нашла время для себя…"></textarea></label>
+                </div>
+                <div class="care-actions"><button id="saveWellbeing" type="submit" class="care-primary" disabled>Сохранить день</button><button id="cancelWellEdit" type="button" hidden>Отмена</button></div>
+            </form>
+            <p id="wellStatus" role="status"></p>
+            <h3>Мои дни</h3><div id="wellHistory" class="care-history"></div>
+        </section>
+        <details class="care-backup"><summary>Мои данные · резервная копия</summary>
+            <p>Цель, замеры и дневник заботы хранятся только в этом браузере. Они не передаются ИИ. Задачи и XP в эту копию не входят.</p>
+            <div class="care-actions"><button type="button" id="exportCare">Скачать копию</button><button type="button" id="chooseCareImport">Восстановить из файла</button></div>
+            <input id="importCareFile" type="file" accept=".json,application/json" hidden>
+            <div id="careImportPreview" hidden><p id="careImportDescription"></p><p>Восстановление заменит данные раздела «Фигура и забота». Сначала скачай текущую копию.</p><div class="care-actions"><button id="confirmCareImport" type="button" class="care-primary">Подтвердить восстановление</button><button id="cancelCareImport" type="button">Отмена</button></div></div>
+            <p id="backupStatus" role="status"></p>
+            <p class="care-muted">Файл содержит личные данные. Храни его в безопасном месте.</p>
+        </details>
+    </dialog>
+    <dialog id="salesDialog" class="sales-dialog" aria-labelledby="salesTitle">
+        <div class="sales-dialog-head">
+            <div>
+                <p class="sales-eyebrow">ТАТСТРОЙДОМ</p>
+                <h2 id="salesTitle">Продажи и доход</h2>
+                <p>Записывай продажи — выручка, общая прибыль и твоя доля посчитаются автоматически.</p>
+            </div>
+            <button type="button" class="sales-close" id="salesClose" aria-label="Закрыть">×</button>
+        </div>
+
+        <section class="sales-summary" aria-labelledby="salesSummaryTitle">
+            <div class="sales-month-field">
+                <label for="salesMonth" id="salesSummaryTitle">Итог за месяц</label>
+                <input type="month" id="salesMonth">
+            </div>
+            <div class="sales-metrics">
+                <div><span>Выручка за месяц</span><strong id="salesRevenueTotal">0 ₽</strong></div>
+                <div><span>Общая прибыль</span><strong id="salesGrossProfitTotal">0 ₽</strong></div>
+                <div><span>Мой доход (50%)</span><strong id="salesMyIncomeTotal">0 ₽</strong></div>
+            </div>
+        </section>
+
+        <form id="salesForm" class="sales-form">
+            <h3 id="salesFormTitle">Новая продажа</h3>
+            <div class="sales-fields">
+                <label>Дата<input type="date" id="saleDate" required></label>
+                <label>Товар<input type="text" id="saleProduct" maxlength="200" required placeholder="Например, стеновая панель"></label>
+                <label>Количество<input type="number" id="saleQuantity" min="0.01" step="0.01" required inputmode="decimal"></label>
+                <label>Цена продажи за единицу, ₽<input type="number" id="salePrice" min="0" step="0.01" required inputmode="decimal"></label>
+                <label>Закупочная цена за единицу, ₽<input type="number" id="saleCost" min="0" step="0.01" required inputmode="decimal"></label>
+                <label>Дополнительные расходы, ₽<input type="number" id="saleExpenses" min="0" step="0.01" value="0" required inputmode="decimal"></label>
+                <label class="sales-wide">Комментарий<textarea id="saleComment" rows="2" maxlength="1000" placeholder="Необязательно"></textarea></label>
+            </div>
+            <div class="sales-calculation" aria-live="polite">
+                <span>Выручка: <strong id="saleRevenue">0 ₽</strong></span>
+                <span>Общая прибыль: <strong id="saleGrossProfit">0 ₽</strong></span>
+                <span>Мой доход (50%): <strong id="saleMyIncome">0 ₽</strong></span>
+            </div>
+            <div class="sales-actions">
+                <button type="submit" class="sales-primary" id="saleSave">Сохранить продажу</button>
+                <button type="button" id="saleCancel" hidden>Отмена</button>
+            </div>
+            <p id="salesStatus" class="sales-status" role="status"></p>
+        </form>
+
+        <section class="sales-history" aria-labelledby="salesHistoryTitle">
+            <h3 id="salesHistoryTitle">История продаж</h3>
+            <div id="salesList"></div>
+        </section>
+    </dialog>
+    <dialog id="lessonsDialog" class="lessons-dialog" aria-labelledby="lessonsTitle">
+        <div class="lessons-dialog-head">
+            <div>
+                <p class="lessons-eyebrow">ENGLISH</p>
+                <h2 id="lessonsTitle">Ученики и занятия</h2>
+                <p>Планируй уроки, отмечай проведение и оплату в одном месте.</p>
+            </div>
+            <button type="button" class="lessons-close" id="lessonsClose" aria-label="Закрыть">×</button>
+        </div>
+
+        <section class="lessons-summary" aria-labelledby="lessonsSummaryTitle">
+            <div class="lessons-month-field">
+                <label for="lessonsMonth" id="lessonsSummaryTitle">Итоги за месяц</label>
+                <input type="month" id="lessonsMonth">
+            </div>
+            <div class="lessons-metrics">
+                <div><span>Запланировано</span><strong id="lessonsPlanned">0</strong></div>
+                <div><span>Проведено</span><strong id="lessonsCompleted">0</strong></div>
+                <div><span>Оплачено</span><strong id="lessonsPaid">0</strong></div>
+                <div><span>Получено оплат</span><strong id="lessonsPaidTotal">0 ₽</strong></div>
+            </div>
+        </section>
+
+        <form id="lessonForm" class="lesson-form">
+            <h3 id="lessonFormTitle">Новое занятие</h3>
+            <div class="lesson-fields">
+                <label class="lesson-wide">ФИО ученика<input type="text" id="lessonStudent" maxlength="200" required placeholder="Имя и фамилия"></label>
+                <label>Дата<input type="date" id="lessonDate" required></label>
+                <label>Время<input type="time" id="lessonTime" required></label>
+                <label>Длительность, минут<input type="number" id="lessonDuration" min="1" max="1440" step="1" required inputmode="numeric" value="60"></label>
+                <label>Стоимость занятия, ₽<input type="number" id="lessonPrice" min="0" step="0.01" required inputmode="decimal"></label>
+                <label>Формат<select id="lessonFormat" required><option value="online">Онлайн</option><option value="offline">Очно</option></select></label>
+                <label>Статус<select id="lessonStatus" required><option value="planned">Запланировано</option><option value="completed">Проведено</option><option value="cancelled">Отменено</option></select></label>
+                <label>Оплата<select id="lessonPayment" required><option value="unpaid">Не оплачено</option><option value="paid">Оплачено</option></select></label>
+                <label class="lesson-wide">Комментарий<textarea id="lessonComment" rows="2" maxlength="1000" placeholder="Необязательно"></textarea></label>
+            </div>
+            <div class="lesson-actions">
+                <button type="submit" class="lesson-primary" id="lessonSave">Сохранить занятие</button>
+                <button type="button" id="lessonCancel" hidden>Отмена</button>
+            </div>
+            <p id="lessonsStatus" class="lessons-status" role="status"></p>
+        </form>
+
+        <section class="lessons-schedule" aria-labelledby="lessonsScheduleTitle">
+            <h3 id="lessonsScheduleTitle">Расписание занятий</h3>
+            <div id="lessonsList"></div>
+        </section>
+    </dialog>
+<script src="script.js"></script>
+<script src="cards.js"></script>
+<script src="money.js"></script>
+<script src="lessons.js"></script>
+<script src="progress.js"></script>
+<script src="companion.js"></script>
+</body>
+</html>
