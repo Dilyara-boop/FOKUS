@@ -1,0 +1,1896 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f1eb;
+    color: #292725;
+}
+
+.app {
+    max-width: 1050px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: 35px 45px 110px;
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 38px;
+    letter-spacing: 5px;
+}
+
+.subtitle {
+    margin: 3px 0 0;
+    color: #8a8178;
+}
+
+.level {
+    background: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+}
+
+/* ПРИВЕТСТВИЕ */
+
+.welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e6ddd2;
+    border-radius: 30px;
+    padding: 30px 40px;
+    margin-bottom: 25px;
+}
+
+.hello {
+    color: #6d6259;
+    font-weight: 600;
+}
+
+.welcome h2 {
+    font-size: 32px;
+    margin: 8px 0;
+}
+
+.motivation {
+    line-height: 1.6;
+    color: #6d6259;
+}
+
+.character-placeholder {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: #f8f5f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 75px;
+}
+
+/* ЗАДАЧИ */
+
+.tasks {
+    background: white;
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.tasks h3 {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 17px 20px;
+    margin: 12px 0;
+    border-radius: 18px;
+}
+
+.task input {
+    width: 22px;
+    height: 22px;
+}
+
+.task p {
+    margin: 5px 0 0;
+}
+
+.category {
+    font-weight: 700;
+}
+
+.business {
+    background: #f3e5dc;
+}
+
+.english {
+    background: #e2e8f0;
+}
+
+.myself {
+    background: #e5eadf;
+}
+
+.add-task {
+    width: 100%;
+    border: 2px dashed #c9c1b8;
+    background: transparent;
+    border-radius: 16px;
+    padding: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* СТАТИСТИКА */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.stats div {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.stats strong {
+    display: block;
+    font-size: 25px;
+    margin: 5px;
+}
+
+.stats span {
+    color: #857c74;
+    font-size: 13px;
+}
+
+/* Я ЗАВИСЛА */
+
+.stuck-button {
+    width: min(230px, 100%);
+    border: none;
+    padding: 17px;
+    border-radius: 18px;
+    background: #34302d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* НИЖНЕЕ МЕНЮ */
+
+nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 8px;
+
+    background: rgba(255,255,255,0.94);
+    padding: 9px;
+    border-radius: 25px;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    z-index: 20;
+}
+
+nav button {
+    border: none;
+    background: transparent;
+    padding: 10px 20px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+nav button span {
+    display: block;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+nav button.active {
+    background: #e6ddd2;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.tab-placeholder {
+    min-height: 55vh;
+    padding: 40px;
+    border-radius: 28px;
+    background: white;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.tab-placeholder h2 {
+    margin: 0;
+    color: #6d6259;
+}
+
+.profile-placeholder.active {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.profile-placeholder article {
+    min-height: 180px;
+    padding: 28px;
+    border-radius: 28px;
+    background: white;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    font-size: 19px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ТЕЛЕФОН */
+
+@media (max-width: 700px) {
+
+    .app {
+        padding: 20px 15px 110px;
+    }
+
+    .welcome {
+        padding: 25px;
+    }
+
+    .welcome h2 {
+        font-size: 25px;
+    }
+
+    .character-placeholder {
+        width: 100px;
+        height: 100px;
+        font-size: 45px;
+    }
+
+    .stats {
+        gap: 7px;
+    }
+
+    .stats div {
+        padding: 13px 5px;
+    }
+
+    nav button {
+        padding: 9px 14px;
+    }
+
+    nav {
+        bottom: max(10px, env(safe-area-inset-bottom));
+        width: calc(100% - 20px);
+        max-width: 430px;
+        justify-content: space-around;
+    }
+
+    nav button {
+        flex: 1;
+        padding: 9px 5px;
+    }
+
+    .tab-placeholder {
+        min-height: 50vh;
+        padding: 28px 18px;
+    }
+
+    .profile-placeholder.active {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-placeholder article {
+        min-height: 125px;
+    }
+}
+
+.character {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.character img {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.character img:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+
+/* НОВЫЙ БЛОК ПРИВЕТСТВИЯ */
+
+.welcome-text {
+    flex: 1;
+    text-align: center;
+    padding: 15px 30px;
+}
+
+.hello {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.65);
+    padding: 8px 18px;
+    border-radius: 30px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+
+    color: #786b61;
+    margin-bottom: 14px;
+}
+
+.welcome-text h2 {
+    font-size: 42px;
+    line-height: 1.1;
+    margin: 5px 0 14px;
+    color: #292725;
+}
+
+.welcome-text h2 span {
+    color: #b66d5c;
+}
+
+.focus-message {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: #514943;
+}
+
+.welcome-text .motivation {
+    font-size: 14px;
+    margin: 0;
+    color: #8b7e74;
+}
+
+/* НОВЫЕ ФОКУС-КАРТОЧКИ */
+
+.focus-card {
+    position: relative;
+    min-height: 220px;
+    border-radius: 25px;
+    padding: 25px;
+
+    display: flex;
+    align-items: stretch;
+
+    overflow: hidden;
+}
+
+.focus-card.business {
+    background: linear-gradient(
+        135deg,
+        #f8e1d2,
+        #f5d5bd
+    );
+}
+
+.focus-content {
+    position: relative;
+    z-index: 2;
+    width: 62%;
+}
+
+.focus-title {
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.focus-tag {
+    display: inline-block;
+
+    background: #c97961;
+    color: white;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    padding: 5px 12px;
+    border-radius: 20px;
+
+    margin-bottom: 12px;
+}
+
+.focus-card h4 {
+    margin: 0 0 18px;
+
+    font-size: 20px;
+    line-height: 1.25;
+}
+
+.focus-input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: rgba(255,255,255,0.9);
+
+    padding: 14px 16px;
+
+    border-radius: 14px;
+
+    font-size: 15px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.focus-sticker {
+    position: absolute;
+
+    right: -5px;
+    bottom: -5px;
+
+    width: 190px;
+    height: 190px;
+
+    object-fit: contain;
+}
+
+/* ТРИ ФОКУСА В ОДИН РЯД */
+
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.focus-card {
+    min-width: 0;
+    min-height: 270px;
+    padding: 22px;
+}
+
+/* чтобы текст не занимал всю карточку */
+
+.focus-content {
+    width: 65%;
+    position: relative;
+    z-index: 2;
+}
+
+/* ENGLISH */
+
+.english-card {
+    background: linear-gradient(
+        135deg,
+        #e5edf7,
+        #d5e1f0
+    );
+}
+
+/* Я */
+
+.myself-card {
+    background: linear-gradient(
+        135deg,
+        #edf3e5,
+        #dfe9d5
+    );
+}
+
+/* цветные плашки */
+
+.blue-tag {
+    background: #668bb7;
+}
+
+.green-tag {
+    background: #6e9b6c;
+}
+
+/* временные картинки */
+
+.sticker-placeholder {
+    position: absolute;
+    right: 20px;
+    bottom: 70px;
+
+    font-size: 55px;
+
+    opacity: 0.8;
+}
+
+/* поле задачи внизу карточки */
+
+.focus-input {
+    position: absolute;
+    left: 22px;
+    bottom: 20px;
+
+    width: calc(100% - 44px);
+}
+
+/* наш стикер ТатСтройДом */
+
+.focus-sticker {
+    right: -5px;
+    bottom: 50px;
+
+    width: 155px;
+    height: 155px;
+
+    object-fit: contain;
+}
+
+/* на телефоне карточки снова идут вниз */
+
+@media (max-width: 800px) {
+
+    .focus-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .focus-card {
+        min-height: 220px;
+    }
+}
+
+.english-sticker {
+    width: 175px;
+    height: 175px;
+    right: -5px;
+    bottom: 48px;
+    object-fit: contain;
+}
+
+.myself-sticker {
+    width: 175px;
+    height: 175px;
+    right: -5px;
+    bottom: 48px;
+    object-fit: contain;
+}
+
+/* ВЫРАВНИВАЕМ ВСЕ ТРИ КАРТОЧКИ */
+
+.focus-card {
+    min-height: 300px;
+    padding: 22px;
+}
+
+/* оставляем место справа под персонажа */
+
+.focus-content {
+    width: 58%;
+}
+
+/* одинаковый визуальный размер всех стикеров */
+
+.focus-sticker,
+.english-sticker,
+.myself-sticker {
+    width: 165px;
+    height: 165px;
+
+    right: 8px;
+    bottom: 58px;
+
+    object-fit: contain;
+    object-position: center;
+}
+
+/* English чуть шире по форме — компенсируем */
+
+.english-sticker {
+    width: 175px;
+    height: 175px;
+    right: -2px;
+}
+
+/* Я тоже немного шире */
+
+.myself-sticker {
+    width: 170px;
+    height: 170px;
+    right: 0;
+}
+
+/* вопрос */
+
+.focus-card h4 {
+    max-width: 155px;
+    margin-bottom: 75px;
+}
+
+/* поле всегда внизу и не залезает на текст */
+
+.focus-input {
+    position: absolute;
+
+    left: 22px;
+    right: 22px;
+    bottom: 20px;
+
+    width: calc(100% - 44px);
+
+    height: 50px;
+    padding: 0 15px;
+
+    border-radius: 15px;
+
+    z-index: 5;
+}
+
+.focus-card h4 {
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+.focus-input {
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+
+    width: calc(100% - 36px);
+    height: 46px;
+}
+
+.focus-sticker,
+.english-sticker,
+.myself-sticker {
+    bottom: 58px;
+}
+
+.english-sticker {
+    width: 180px;
+    height: 180px;
+}
+
+.myself-sticker {
+    width: 175px;
+    height: 175px;
+}
+
+/* ===== КРАСИВАЯ КНОПКА ГОТОВО ===== */
+
+.done-check {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 12px;
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+
+    z-index: 20;
+
+    transition: 0.25s;
+}
+
+/* настоящий checkbox прячем */
+
+.done-check input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* добавляем галочку */
+
+.done-check span::before {
+    content: "✓ ";
+}
+
+/* наведение */
+
+.done-check:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.10);
+}
+
+
+/* ===== ВЫПОЛНЕННАЯ КАРТОЧКА ===== */
+
+.focus-card.completed {
+    opacity: 0.78;
+}
+
+.focus-card.completed .done-check {
+    background: #ffffff;
+    color: #56845b;
+}
+
+.focus-card.completed .done-check span {
+    font-size: 0;
+}
+
+.focus-card.completed .done-check span::before {
+    content: "✓ Выполнено";
+    font-size: 12px;
+}
+
+/* поле задачи */
+
+.focus-input {
+    left: 18px;
+    bottom: 18px;
+
+    width: calc(100% - 36px);
+    height: 48px;
+
+    box-sizing: border-box;
+    padding: 0 16px;
+
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 15px;
+
+    background: rgba(255,255,255,0.92);
+
+    font-size: 14px;
+
+    z-index: 10;
+}
+
+.focus-title {
+    padding-right: 90px;
+}
+
+/* КОМПАКТНАЯ КНОПКА ГОТОВО */
+
+.done-check {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    top: auto;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.95);
+    color: #8a8178;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+    z-index: 20;
+    cursor: pointer;
+}
+
+/* настоящий checkbox прячем */
+
+.done-check input {
+    display: none;
+}
+
+/* убираем текст */
+
+.done-check span {
+    font-size: 0;
+}
+
+/* рисуем только галочку */
+
+.done-check span::before {
+    content: "✓";
+    font-size: 20px;
+    font-weight: 800;
+}
+
+/* поле оставляем место для кружка */
+
+.focus-input {
+    width: calc(100% - 72px);
+}
+
+/* когда выполнено */
+
+.focus-card.completed .done-check {
+    background: #6f9d72;
+    color: white;
+}
+
+/* никаких штампов поверх карточки */
+
+.focus-card.completed::after {
+    display: none;
+}
+
+.done-check span {
+    font-size: 0 !important;
+    line-height: 1;
+}
+
+.done-check span::before {
+    content: "✓" !important;
+    font-size: 20px !important;
+    color: inherit;
+}
+
+.done-check {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.focus-card.completed .done-check {
+    background: #74a27a;
+    color: white;
+}
+
+/* КНОПКА "Я ЗАВИСЛА" */
+
+.stuck-button {
+    width: 100%;
+    padding: 0;
+    margin-top: 20px;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+    display: block;
+}
+
+.stuck-button img {
+    display: block;
+    width: 100%;
+    max-width: 850px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    transition: transform 0.2s ease;
+}
+
+.stuck-button:hover img {
+    transform: scale(1.015);
+}
+
+/* ===== ОКНО "Я ЗАВИСЛА" ===== */
+
+.stuck-modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(35, 32, 30, 0.55);
+    backdrop-filter: blur(5px);
+
+    z-index: 999;
+}
+
+.stuck-modal.open {
+    display: flex;
+}
+
+.stuck-modal-content {
+    position: relative;
+
+    width: min(720px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+
+    padding: 35px;
+
+    background: #f8f4ee;
+    border-radius: 28px;
+
+    box-shadow: 0 25px 70px rgba(0,0,0,0.20);
+}
+
+.stuck-modal-content h2 {
+    margin: 0;
+    text-align: center;
+
+    font-size: 30px;
+}
+
+.stuck-subtitle {
+    margin: 8px 0 25px;
+
+    text-align: center;
+    color: #83786f;
+}
+
+.stuck-close {
+    position: absolute;
+
+    top: 15px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+
+    font-size: 24px;
+    color: #6e625a;
+
+    cursor: pointer;
+}
+
+.stuck-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.stuck-option {
+    min-height: 130px;
+
+    padding: 20px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: white;
+
+    text-align: left;
+    cursor: pointer;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+
+    transition: 0.2s ease;
+}
+
+.stuck-option:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.09);
+}
+
+.stuck-option span {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 28px;
+}
+
+.stuck-option strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 16px;
+    color: #332f2c;
+}
+
+/* ===== ОКНО "Я ЗАВИСЛА" ===== */
+
+.stuck-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(40, 35, 31, 0.45);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.stuck-modal.show {
+    display: flex;
+}
+
+.stuck-modal-content {
+    position: relative;
+    width: min(680px, 92vw);
+    max-height: 85vh;
+    overflow-y: auto;
+
+    background: #fffaf4;
+    border-radius: 32px;
+    padding: 38px;
+
+    box-shadow: 0 25px 70px rgba(0,0,0,0.18);
+}
+
+.focus-help-tab .stuck-modal-content {
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    margin: 0 auto;
+}
+
+.focus-help-tab .stuck-close {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0 0 22px;
+    padding: 10px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+}
+
+.stuck-modal-content h2 {
+    margin: 0 45px 8px 0;
+    font-size: 30px;
+    color: #332f2c;
+}
+
+.stuck-subtitle {
+    margin: 0 0 25px;
+    color: #8c8178;
+    font-size: 16px;
+}
+
+.stuck-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+
+    background: #eee5dc;
+    color: #554c46;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.stuck-close:hover {
+    transform: scale(1.08);
+}
+
+/* ===== РЕЗУЛЬТАТ "ВЫБЕРИ ЗА МЕНЯ" ===== */
+
+.stuck-result {
+    display: none;
+    margin-top: 22px;
+    padding: 24px;
+    border-radius: 22px;
+    background: #f0e8df;
+    text-align: center;
+}
+
+.stuck-result.show {
+    display: block;
+}
+
+.result-label {
+    margin: 0 0 8px;
+    color: #8c8178;
+    font-size: 14px;
+}
+
+.stuck-result h3 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    color: #332f2c;
+}
+
+.result-note {
+    margin: 0 0 18px;
+    color: #756b63;
+}
+
+#startFocusBtn {
+    border: none;
+    border-radius: 18px;
+    padding: 13px 22px;
+    background: #332f2c;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#startFocusBtn:hover {
+    transform: translateY(-2px);
+}
+
+/* ===== ТАЙМЕР ФОКУСА ===== */
+
+.focus-timer {
+    display: none;
+    margin: 18px 0 12px;
+    font-size: 38px;
+    font-weight: 800;
+    color: #332f2c;
+}
+
+.focus-timer.show {
+    display: block;
+}
+
+#finishFocusBtn {
+    display: none;
+    border: none;
+    border-radius: 18px;
+    padding: 13px 22px;
+    background: #6f9d72;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#finishFocusBtn.show {
+    display: inline-block;
+}
+
+#startFocusBtn {
+    transition: 0.2s ease;
+}
+
+#startFocusBtn:disabled {
+    opacity: 0.65;
+    cursor: default;
+}
+
+/* ===== СЛИШКОМ МНОГО ДЕЛ ===== */
+
+.too-many-result {
+    display: none;
+    margin-top: 22px;
+    padding: 24px;
+    border-radius: 22px;
+    background: #f0e8df;
+}
+
+.too-many-result.show {
+    display: block;
+}
+
+.too-many-task {
+    margin: 8px 0;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: white;
+    color: #433c37;
+}
+
+#chooseOneBtn {
+    margin-top: 16px;
+    border: none;
+    border-radius: 18px;
+    padding: 13px 20px;
+    background: #332f2c;
+    color: white;
+    cursor: pointer;
+}
+
+.too-many-task {
+    display: block;
+    width: 100%;
+
+    margin: 8px 0;
+    padding: 12px 14px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: white;
+    color: #433c37;
+
+    text-align: left;
+    font-size: 15px;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.too-many-task:hover {
+    transform: translateX(4px);
+    background: #fffaf5;
+}
+
+/* ===== ЛЕСТНИЦА МАЛЕНЬКИХ ШАГОВ ===== */
+
+.big-task-result {
+    display: none;
+    margin-top: 22px;
+    padding: 24px;
+    border-radius: 22px;
+    background: #f0e8df;
+}
+
+.big-task-result.show {
+    display: block;
+}
+
+.big-task-result input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 10px 0;
+    padding: 13px 15px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: white;
+    font-size: 15px;
+}
+
+#startFirstStepBtn {
+    margin-top: 12px;
+    padding: 13px 20px;
+
+    border: none;
+    border-radius: 18px;
+
+    background: #332f2c;
+    color: white;
+
+    cursor: pointer;
+}
+
+/* ===== ДОПОЛНИТЕЛЬНЫЕ ЗАДАЧИ ===== */
+
+#extraTasks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 14px 0;
+}
+
+.extra-task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: #ffffff;
+    padding: 14px 16px;
+    border-radius: 18px;
+
+    font-size: 16px;
+    color: #332f2c;
+}
+
+.extra-task input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.extra-task span {
+    flex: 1;
+}
+
+.extra-task.completed span {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.extra-task-delete {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.extra-task-delete:hover {
+    opacity: 1;
+}
+
+@media (max-width: 700px) {
+    .stuck-button {
+        width: min(190px, 100%);
+    }
+
+    .focus-help-tab .stuck-modal-content {
+        padding: 24px 18px;
+        border-radius: 24px;
+    }
+
+    .focus-help-tab .stuck-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Встроенная помощь во вкладке «Фокус». */
+.stuck-button {
+   width: min(420px, 100%);
+    margin: 20px auto 0;
+}
+
+.focus-help-tab .stuck-modal-content {
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    margin: 0 auto;
+}
+
+.focus-help-tab .stuck-close {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0 0 22px;
+    padding: 10px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+    .stuck-button {
+        width: min(190px, 100%);
+    }
+}
+/* Кнопка личного раздела */
+.myself-card {
+    padding-bottom: 80px;
+}
+
+.myself-card .myself-sticker {
+    bottom: 116px;
+}
+
+.self-care-open {
+    position: absolute;
+    bottom: 18px;
+    left: 18px;
+    right: 18px;
+    z-index: 25;
+    padding: 12px;
+    border: none;
+    border-radius: 16px;
+    background: #6e9b6c;
+    color: white;
+    font: inherit;
+    cursor: pointer;
+}
+
+/* Окно «Фигура и забота» */
+#selfCareDialog {
+    box-sizing: border-box;
+    width: min(720px, calc(100% - 24px));
+    max-height: 88vh;
+    inset: 0;
+    margin: auto;
+    padding: 24px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: 1px solid #e7e0d6;
+    border-radius: 28px;
+    background: #f7f4ee;
+    color: #36382f;
+    box-shadow: 0 24px 80px rgb(35 40 30 / 20%);
+}
+
+#selfCareDialog::backdrop {
+    background: rgb(35 38 30 / 38%);
+}
+
+#selfCareDialog > form {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+.self-care-close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: #666b5e;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Текст и персонаж рядом */
+#selfCareDialog .care-welcome {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 150px;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 8px 24px;
+}
+
+#selfCareDialog .care-welcome img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+#selfCareDialog .care-eyebrow {
+    margin: 0 0 10px;
+    color: #78816b;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+#selfCareDialog h2 {
+    margin: 0 0 10px;
+    font-size: clamp(24px, 4vw, 32px);
+    line-height: 1.15;
+}
+
+#selfCareDialog p {
+    margin: 10px 0 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+#selfCareDialog .care-welcome p:last-child {
+    margin-bottom: 0;
+    color: #737769;
+}
+
+/* Вкладки разделов */
+#selfCareDialog .care-switch {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    margin: 0 0 18px;
+    padding: 5px;
+    border: 1px solid #dfe6d8;
+    border-radius: 16px;
+    background: #e9eee3;
+}
+
+#selfCareDialog .care-switch button {
+    min-width: 0;
+    padding: 11px 14px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: #687161;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    cursor: pointer;
+    transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
+}
+
+#selfCareDialog .care-switch button:hover {
+    background: rgb(255 255 255 / 55%);
+    color: #40543c;
+}
+
+#selfCareDialog .care-switch button[aria-pressed="true"] {
+    background: white;
+    color: #405d39;
+    box-shadow: 0 3px 10px rgb(58 76 50 / 12%);
+}
+
+/* Основные карточки */
+#selfCareDialog section {
+    margin: 0 0 16px;
+    padding: 24px;
+    border: 1px solid #ece9e1;
+    border-radius: 22px;
+    background: white;
+}
+
+#selfCareDialog h3 {
+    margin: 0 0 12px;
+    color: #40543c;
+    font-size: 18px;
+}
+
+/* Раскрывающиеся формы */
+#selfCareDialog details {
+    margin: 16px 0;
+    padding: 16px;
+    border: 1px solid #dce5d5;
+    border-radius: 16px;
+    background: #f0f5e9;
+}
+
+#selfCareDialog details.body-entry {
+    border-color: #ecdccf;
+    background: #fbf1e9;
+}
+
+#selfCareDialog summary {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+#selfCareDialog details[open] > summary {
+    margin-bottom: 20px;
+}
+
+#selfCareDialog .body-goal .care-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+#selfCareDialog .body-goal .care-wide {
+    grid-column: auto;
+}
+
+/* Форма «Как я сегодня?» */
+#selfCareDialog #careWellbeing .care-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+}
+
+#selfCareDialog #careWellbeing .care-fields label {
+    display: grid;
+    min-width: 0;
+    gap: 7px;
+    margin: 0;
+}
+
+#selfCareDialog #careWellbeing .care-wide {
+    grid-column: 1 / -1;
+}
+
+#selfCareDialog label {
+    display: inline-block;
+    margin-bottom: 6px;
+    color: #59614f;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#selfCareDialog input,
+#selfCareDialog textarea,
+#selfCareDialog select {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #d8ded1;
+    border-radius: 12px;
+    background: white;
+    color: #36382f;
+    font: inherit;
+    font-size: 16px;
+}
+
+#selfCareDialog textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+#selfCareDialog input:focus,
+#selfCareDialog textarea:focus,
+#selfCareDialog select:focus,
+#selfCareDialog summary:focus-visible,
+#selfCareDialog button:focus-visible {
+    outline: 2px solid #709167;
+    outline-offset: 3px;
+}
+
+#saveBodyGoal,
+#saveBodyRecord,
+#saveWellbeing {
+    width: 100%;
+    padding: 13px 18px;
+    border: none;
+    border-radius: 12px;
+    background: #52734a;
+    color: white;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#saveBodyGoal:hover,
+#saveBodyRecord:hover,
+#saveWellbeing:hover {
+    background: #405d39;
+}
+
+#saveBodyGoal:disabled,
+#saveBodyRecord:disabled,
+#saveWellbeing:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#selfCareDialog #careWellbeing .care-actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+#selfCareDialog #careWellbeing #saveWellbeing {
+    flex: 1 1 100%;
+    min-height: 46px;
+}
+
+#selfCareDialog [role="status"]:empty {
+    display: none;
+}
+
+#selfCareDialog [role="status"]:not(:empty) {
+    margin-top: 12px;
+    color: #40543c;
+}
+
+#bodyRecordList p {
+    margin: 10px 0;
+    padding: 14px 16px;
+    border-left: 3px solid #b5c8a4;
+    border-radius: 0 12px 12px 0;
+    background: #f6f7f2;
+}
+
+@media (max-width: 600px) {
+    #selfCareDialog #careWellbeing .care-fields {
+        grid-template-columns: 1fr;
+    }
+
+    #selfCareDialog #careWellbeing .care-wide {
+        grid-column: auto;
+    }
+}
+
+/* Телефон */
+@media (max-width: 480px) {
+    #selfCareDialog {
+        padding: 16px;
+        border-radius: 22px;
+    }
+
+    #selfCareDialog .care-welcome {
+        grid-template-columns: minmax(0, 1fr) 90px;
+        padding: 8px 0 20px;
+    }
+
+    #selfCareDialog .care-welcome img {
+        width: 90px;
+        height: 110px;
+    }
+
+    #selfCareDialog section {
+        padding: 16px;
+    }
+
+    #selfCareDialog details {
+        padding: 14px;
+    }
+
+    #selfCareDialog .body-goal .care-fields {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== MOBILE HOME: CONSOLIDATED OVERRIDES ===== */
+@media (max-width: 600px) {
+    /* Mobile gutters come from .app; keep the home panel almost full width. */
+    #todayTab {
+        width: 100%;
+        padding: 0 0 calc(135px + env(safe-area-inset-bottom));
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    #todayTab .welcome {
+        position: relative;
+        display: block;
+        width: 100%;
+        min-height: 390px;
+        padding: 22px 18px 165px;
+        box-sizing: border-box;
+        border-radius: 26px;
+        overflow: hidden;
+    }
+
+    #todayTab .welcome-text {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding: 0;
+        text-align: left;
+        box-sizing: border-box;
+    }
+
+    #todayTab .hello {
+        max-width: 100%;
+        margin-bottom: 16px;
+    }
+
+    #todayTab .hello h1 {
+        margin: 0;
+        font-size: 23px;
+        line-height: 1.2;
+        letter-spacing: 0;
+    }
+
+    #todayTab .welcome h2 {
+        margin: 0 0 13px;
+        font-size: 27px;
+        line-height: 1.08;
+    }
+
+    #todayTab .welcome h2 span {
+        display: block;
+    }
+
+    #todayTab .focus-message {
+        margin: 0 0 8px;
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    #todayTab .welcome-text .motivation {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    #todayTab .character {
+        position: absolute;
+        right: 4px;
+        bottom: 2px;
+        z-index: 1;
+        width: 160px;
+        height: 160px;
+    }
+
+    #todayTab .character img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    #todayTab .focus-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        width: 100%;
+        margin-top: 16px;
+    }
+
+    #todayTab .focus-card {
+        position: relative;
+        display: block;
+        width: 100%;
+        min-height: 315px;
+        padding: 22px 20px 145px;
+        box-sizing: border-box;
+        border-radius: 24px;
+        overflow: hidden;
+    }
+
+    #todayTab .focus-content {
+        position: static;
+        width: 100%;
+    }
+
+    #todayTab .focus-title {
+        margin-bottom: 9px;
+        padding-right: 125px;
+        font-size: 17px;
+        line-height: 1.2;
+    }
+
+    #todayTab .focus-tag {
+        margin-bottom: 12px;
+        font-size: 11px;
+    }
+
+    #todayTab .focus-card h4 {
+        width: calc(100% - 125px);
+        max-width: none;
+        margin: 0;
+        font-size: 19px;
+        line-height: 1.2;
+    }
+
+    #todayTab .focus-sticker,
+    #todayTab .english-sticker,
+    #todayTab .myself-sticker {
+        position: absolute;
+        top: 48px;
+        right: 6px;
+        bottom: auto;
+        z-index: 1;
+        width: 135px;
+        height: 135px;
+        max-height: none;
+        margin: 0;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    #todayTab .focus-input {
+        position: absolute;
+        left: 20px;
+        bottom: 82px;
+        z-index: 4;
+        width: calc(100% - 92px);
+        height: 46px;
+        padding: 0 14px;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.92);
+        font-size: 14px;
+    }
+
+    #todayTab .done-check {
+        position: absolute;
+        right: 20px;
+        bottom: 85px;
+        top: auto;
+        z-index: 5;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        margin: 0;
+    }
+
+    #todayTab .focus-card > button {
+        position: absolute;
+        right: 20px;
+        bottom: 18px;
+        left: 20px;
+        z-index: 3;
+        width: auto;
+        min-height: 48px;
+        margin: 0;
+        border-radius: 17px;
+    }
+
+    nav {
+        bottom: max(10px, env(safe-area-inset-bottom));
+    }
+}
