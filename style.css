@@ -218,6 +218,37 @@ nav button.active {
     background: #e6ddd2;
 }
 
+.header-tools {
+    display: grid;
+    justify-items: end;
+    gap: 7px;
+}
+
+.sync-button {
+    min-height: 38px;
+    padding: 8px 13px;
+    border: 1px solid #d8e1d1;
+    border-radius: 13px;
+    background: #f8fbf5;
+    color: #53634d;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.sync-button:disabled { cursor: wait; opacity: .65; }
+.sync-status { max-width: 230px; color: #7a8176; font-size: 11px; text-align: right; }
+.sync-status[data-state="ok"] { color: #527448; }
+.sync-status[data-state="error"] { color: #9b5e55; }
+
+@media (max-width: 600px) {
+    header { align-items: start; gap: 12px; }
+    .header-tools { max-width: 178px; }
+    .sync-button { min-height: 34px; padding: 7px 10px; font-size: 10px; }
+    .sync-status { max-width: 178px; font-size: 9px; }
+}
+
 .tab-panel {
     display: none;
 }

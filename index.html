@@ -6,6 +6,12 @@
 
     <title>FOCUS — мой день</title>
 
+    <meta name="theme-color" content="#eef3e8">
+    <meta name="description" content="Личное пространство Диляры для фокуса, заботы о себе и прогресса.">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icons/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="cards.css">
     <link rel="stylesheet" href="money.css">
@@ -23,8 +29,14 @@
                 <p class="subtitle">Do what matters.</p>
             </div>
 
-            <div class="level">
-                ⭐ <span>0 XP</span>
+            <div class="header-tools">
+                <div class="level">
+                    ⭐ <span>0 XP</span>
+                </div>
+                <button type="button" class="sync-button" id="syncButton" aria-describedby="syncStatus">
+                    ☁ Войти и синхронизировать
+                </button>
+                <span class="sync-status" id="syncStatus" role="status">Данные хранятся на этом устройстве</span>
             </div>
         </header>
 
@@ -665,132 +677,7 @@
 <script src="lessons.js"></script>
 <script src="progress.js"></script>
 <script src="companion.js"></script>
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-    import { doc, getDoc, getFirestore, serverTimestamp, setDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyBFBsCxg0Vk0C1e-G9YZxgxaCMADUPSLdM",
-        authDomain: "focus-1e74a.firebaseapp.com",
-        projectId: "focus-1e74a",
-        storageBucket: "focus-1e74a.firebasestorage.app",
-        messagingSenderId: "872858278219",
-        appId: "1:872858278219:web:84bddb080dd795b8d8b0ce"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
-    const googleProvider = new GoogleAuthProvider();
-
-    window.focusFirebase = { app, db };
-
-    const authReady = new Promise((resolve, reject) => {
-        let signInStarted = false;
-        const unsubscribe = onAuthStateChanged(auth, user => {
-            const isGoogleUser = user?.providerData.some(
-                provider => provider.providerId === GoogleAuthProvider.PROVIDER_ID
-            );
-
-            if (isGoogleUser) {
-                console.info("FOCUS Google auth OK", user.uid);
-                unsubscribe();
-                resolve(user);
-                return;
-            }
-
-            if (!signInStarted) {
-                signInStarted = true;
-                signInWithPopup(auth, googleProvider).catch(error => {
-                    unsubscribe();
-                    reject(error);
-                });
-            }
-        }, error => {
-            unsubscribe();
-            reject(error);
-        });
-    });
-
-    const todayTasks = [
-        { key: "business", card: document.querySelector("#todayTab .focus-card.business") },
-        { key: "english", card: document.querySelector("#todayTab .focus-card.english-card") },
-        { key: "self", card: document.querySelector("#todayTab .focus-card.myself-card") }
-    ].map((task, index) => ({
-        ...task,
-        index,
-        input: task.card?.querySelector(".focus-input"),
-        checkbox: task.card?.querySelector(".focus-done")
-    }));
-
-    let localChangesAfterFirebaseStart = false;
-
-    function getTodayData() {
-        return Object.fromEntries(todayTasks.map(task => [
-            task.key,
-            {
-                text: task.input?.value ?? "",
-                done: Boolean(task.checkbox?.checked)
-            }
-        ]));
-    }
-
-    async function saveTodayToFirestore() {
-        try {
-            const user = await authReady;
-            const todayDocument = doc(db, "users", user.uid, "focus_data", "today");
-            console.info("FOCUS Firestore path:", `users/${user.uid}/focus_data/today`);
-            await setDoc(todayDocument, {
-                ...getTodayData(),
-                updatedAt: serverTimestamp()
-            });
-        } catch (error) {
-            console.warn("Не удалось сохранить главные задачи в Firestore:", error);
-        }
-    }
-
-    todayTasks.forEach(task => {
-        if (!task.input || !task.checkbox) {
-            console.error(`Не найдены элементы главной задачи: ${task.key}`);
-            return;
-        }
-
-        task.input.addEventListener("input", () => {
-            localChangesAfterFirebaseStart = true;
-            saveTodayToFirestore();
-        });
-
-        task.checkbox.addEventListener("change", () => {
-            localChangesAfterFirebaseStart = true;
-            saveTodayToFirestore();
-        });
-    });
-
-    try {
-        const user = await authReady;
-        const todayDocument = doc(db, "users", user.uid, "focus_data", "today");
-        console.info("FOCUS Firestore path:", `users/${user.uid}/focus_data/today`);
-        const snapshot = await getDoc(todayDocument);
-
-        if (snapshot.exists() && !localChangesAfterFirebaseStart) {
-            const cloudData = snapshot.data();
-
-            todayTasks.forEach(task => {
-                const cloudTask = cloudData[task.key];
-                if (!task.input || !task.checkbox || !cloudTask ||
-                    typeof cloudTask.text !== "string" || typeof cloudTask.done !== "boolean") return;
-
-                task.input.value = cloudTask.text;
-                task.checkbox.checked = cloudTask.done;
-                task.card.classList.toggle("completed", cloudTask.done);
-                localStorage.setItem(`focusTask${task.index}`, cloudTask.text);
-                localStorage.setItem(`focusDone${task.index}`, String(cloudTask.done));
-            });
-        }
-    } catch (error) {
-        console.warn("Не удалось загрузить главные задачи из Firestore; используется localStorage:", error);
-    }
-</script>
+<script type="module" src="sync.js"></script>
+<script src="pwa.js"></script>
 </body>
 </html>
