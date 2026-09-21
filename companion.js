@@ -8,6 +8,7 @@
     if (!form || !input || !chat || !clearButton) return;
 
     const LANGUAGE_KEY = "fokus.companion.language.v1";
+    const HISTORY_KEY = "fokus.companion.history.v1";
     const translations = {
         ru: {
             eyebrow: "БЕРЕЖНЫЙ ДИАЛОГ",
@@ -23,7 +24,8 @@
             send: "Отправить",
             clear: "Очистить разговор",
             warning: "Это поддерживающий собеседник, а не врач. В экстренной ситуации обратись за помощью к людям и службам рядом",
-            unavailable: "Подключение ИИ будет доступно после установки защищённой версии приложения",
+            unavailable: "Собеседник временно недоступен. Проверь подключение к интернету и настройку сервера.",
+            waiting: "Думаю…",
             confirmClear: "Очистить разговор? Сообщения нельзя будет восстановить.",
             languageLabel: "Язык собеседника",
             promptsLabel: "Быстрые темы разговора",
@@ -43,7 +45,8 @@
             send: "Send",
             clear: "Clear conversation",
             warning: "This is a supportive companion, not a doctor. In an emergency, contact people or emergency services near you.",
-            unavailable: "AI connection will become available after the secure version of the app is installed.",
+            unavailable: "The companion is temporarily unavailable. Check your internet connection and server settings.",
+            waiting: "Thinking…",
             confirmClear: "Clear the conversation? Messages cannot be restored.",
             languageLabel: "Companion language",
             promptsLabel: "Quick conversation topics",
@@ -51,6 +54,7 @@
         }
     };
     let language = "ru";
+    let history = [];
 
     function addMessage(text, type, messageKey = "") {
         const message = document.createElement("div");
@@ -59,6 +63,31 @@
         if (messageKey) message.dataset.companionMessage = messageKey;
         chat.append(message);
         chat.scrollTop = chat.scrollHeight;
+        return message;
+    }
+
+    function saveHistory() {
+        try {
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(-30)));
+        } catch {
+            // Диалог продолжает работать без локальной истории.
+        }
+    }
+
+    function restoreHistory() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
+            if (!Array.isArray(saved)) return;
+            history = saved.filter(item =>
+                item && ["user", "assistant"].includes(item.role) &&
+                typeof item.content === "string" && item.content.length <= 4000
+            ).slice(-30);
+            if (!history.length) return;
+            chat.replaceChildren();
+            history.forEach(item => addMessage(item.content, item.role));
+        } catch {
+            history = [];
+        }
     }
 
     function applyLanguage(nextLanguage, save = false) {
@@ -105,20 +134,51 @@
         });
     });
 
-    form.addEventListener("submit", event => {
+    form.addEventListener("submit", async event => {
         event.preventDefault();
         const text = input.value.trim();
         if (!text) return;
+
         addMessage(text, "user");
-        addMessage(translations[language].unavailable, "notice", "unavailable");
+        history.push({ role: "user", content: text });
+        saveHistory();
         input.value = "";
-        input.focus();
+        input.disabled = true;
+        const submit = form.querySelector('button[type="submit"]');
+        submit.disabled = true;
+        const waiting = addMessage(translations[language].waiting, "notice");
+
+        try {
+            const response = await fetch("https://functions.yandexcloud.net/d4e710p596ie3l1fpjoc", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ language, messages: history.slice(-12) })
+            });
+            const result = await response.json().catch(() => ({}));
+            if (!response.ok || typeof result.reply !== "string") {
+                throw new Error(result.error || "AI request failed");
+            }
+            waiting.remove();
+            addMessage(result.reply, "assistant");
+            history.push({ role: "assistant", content: result.reply });
+            saveHistory();
+        } catch (error) {
+            console.warn("FOCUS companion failed", error);
+            waiting.textContent = translations[language].unavailable;
+            waiting.dataset.companionMessage = "unavailable";
+        } finally {
+            input.disabled = false;
+            submit.disabled = false;
+            input.focus();
+        }
     });
 
     clearButton.addEventListener("click", () => {
         if (!confirm(translations[language].confirmClear)) return;
         chat.replaceChildren();
         addMessage(translations[language].greeting, "assistant", "greeting");
+        history = [];
+        saveHistory();
         input.value = "";
     });
 
@@ -131,4 +191,5 @@
     } catch {
         applyLanguage("ru");
     }
+    restoreHistory();
 })();
