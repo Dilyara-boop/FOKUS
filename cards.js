@@ -54,10 +54,26 @@
     return data;
   }
 
+  // Cycle through the entire available deck before repeating a card.
+  // Existing daily cards and reflections remain unchanged.
+  function pickUnusedCard(data, date, random) {
+    const previous = Object.entries(data.days)
+      .filter(([d]) => d < date)
+      .sort(([a], [b]) => b.localeCompare(a));
+    const used = new Set();
+    for (const [, entry] of previous) {
+      if (used.has(entry.card)) break;
+      used.add(entry.card);
+      if (used.size === cards.length) break;
+    }
+    const available = cards.map((_, i) => i).filter(i => !used.has(i));
+    return available[Math.min(available.length - 1, Math.floor(random() * available.length))];
+  }
+
   function ensure(data, date, random = Math.random) {
     if (!Object.hasOwn(data.days, date)) {
       data.days[date] = {
-        card: Math.min(6, Math.floor(random() * cards.length)),
+        card: pickUnusedCard(data, date, random),
         answers: ['', '', '']
       };
     }
