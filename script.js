@@ -129,17 +129,60 @@ function updateProgress() {
     const level = document.querySelector(".level");
     if (level) level.innerHTML = `⭐ ${Number(localStorage.getItem("totalXP")) || 0} XP`;
 
-    if (completed === 3 && localStorage.getItem("lastStreakDate") !== todayKey) {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const streak = localStorage.getItem("lastStreakDate") === getLocalDateKey(yesterday)
-            ? (Number(localStorage.getItem("focusStreak")) || 0) + 1
-            : 1;
-        localStorage.setItem("focusStreak", String(streak));
-        localStorage.setItem("lastStreakDate", todayKey);
-        if (stats[0]) stats[0].textContent = streak;
+    
+if (completed === 3) {
+    const completedDaysKey = "focusCompletedDays";
+    let completedDays = [];
+
+    try {
+        const saved = JSON.parse(
+            localStorage.getItem(completedDaysKey) || "[]"
+        );
+        if (Array.isArray(saved)) {
+            completedDays = saved.filter(
+                day => /^\d{4}-\d{2}-\d{2}$/.test(day)
+            );
+        }
+    } catch (error) {
+        completedDays = [];
     }
+
+    // Сохраняем сегодняшний завершённый день
+    if (!completedDays.includes(todayKey)) {
+        completedDays.push(todayKey);
+    }
+
+    const completedSet = new Set(completedDays);
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    const yesterdayKey = getLocalDateKey(yesterday);
+    const oldStreak =
+        Number(localStorage.getItem("focusStreak")) || 0;
+    const lastDate = localStorage.getItem("lastStreakDate");
+
+    // Учитываем ранее накопленную серию
+    let streak = 0;
+    if (lastDate === yesterdayKey && oldStreak > 0) {
+        streak = oldStreak + 1;
+    } else {
+        const cursor = new Date();
+        while (completedSet.has(getLocalDateKey(cursor))) {
+            streak++;
+            cursor.setDate(cursor.getDate() - 1);
+        }
+    }
+
+    localStorage.setItem(
+        completedDaysKey,
+        JSON.stringify([...completedSet])
+    );
+    localStorage.setItem("focusStreak", String(streak));
+    localStorage.setItem("lastStreakDate", todayKey);
+
+    if (stats[0]) stats[0].textContent = streak;
 }
+
 
 updateProgress();
 
