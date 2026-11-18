@@ -1213,4 +1213,4 @@ if (item.completed) {
     } else {
         initCareDialog();
     }
-})();
+    })();
