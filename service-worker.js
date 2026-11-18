@@ -1,4 +1,4 @@
-const CACHE = "focus-v6-30cards";
+const CACHE = "focus-v6-30cards-fix1";
 const LOCAL_ASSETS = [
     "./", "index.html", "style.css", "cards.css", "money.css", "lessons.css", "progress.css",
     "script.js", "cards.js", "money.js", "lessons.js", "progress.js", "companion.js", "sync.js", "pwa.js",
