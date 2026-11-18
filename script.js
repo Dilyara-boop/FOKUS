@@ -166,7 +166,7 @@ const streak = completedSet.size;
 
     if (stats[0]) stats[0].textContent = streak;
 }
-
+}
 
 updateProgress();
 
