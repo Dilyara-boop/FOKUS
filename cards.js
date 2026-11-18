@@ -70,7 +70,11 @@
           answer => typeof answer !== 'string' || answer.length > 3000
         )
       ) {
-        throw Error('Некорректная запись.');
+       throw Error(
+  `Некорректная запись за ${date}. ` +
+  `Номер карты: ${entry?.card}. ` +
+  `Ответы: ${Array.isArray(entry?.answers) ? entry.answers.length : 'не массив'}.`
+);
       }
     }
 
