@@ -152,26 +152,10 @@ if (completed === 3) {
         completedDays.push(todayKey);
     }
 
-    const completedSet = new Set(completedDays);
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
+   const completedSet = new Set(completedDays);
 
-    const yesterdayKey = getLocalDateKey(yesterday);
-    const oldStreak =
-        Number(localStorage.getItem("focusStreak")) || 0;
-    const lastDate = localStorage.getItem("lastStreakDate");
-
-    // Учитываем ранее накопленную серию
-    let streak = 0;
-    if (lastDate === yesterdayKey && oldStreak > 0) {
-        streak = oldStreak + 1;
-    } else {
-        const cursor = new Date();
-        while (completedSet.has(getLocalDateKey(cursor))) {
-            streak++;
-            cursor.setDate(cursor.getDate() - 1);
-        }
-    }
+// Общее количество уникальных продуктивных дней
+const streak = completedSet.size;
 
     localStorage.setItem(
         completedDaysKey,
